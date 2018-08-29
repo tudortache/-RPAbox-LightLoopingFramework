@@ -73,11 +73,12 @@
       <Variable x:TypeArguments="x:String" Name="usernameApp1" />
       <Variable x:TypeArguments="ss:SecureString" Name="passwordApp1" />
     </Sequence.Variables>
+    <ui:Comment DisplayName="" sap2010:WorkflowViewState.IdRef="Comment_1" Text="PLEASE ENABLE ALL ANNOTATIONS" />
     <Sequence DisplayName="init" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="grab any configuration in here, including credentials" DisplayName="Invoke InitAllSettings workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Utils\InitAllSettings.xaml">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="in_ConfigFile">Config.xlsx</InArgument>
-          <InArgument x:TypeArguments="s:String[]" x:Key="in_ConfigSheets">[{"Settings", "Constants"}]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_ConfigFile">User settings\Config.xlsx</InArgument>
+          <InArgument x:TypeArguments="s:String[]" x:Key="in_ConfigSheets">[{"Settings"}]</InArgument>
           <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="out_Config">[config]</OutArgument>
           <OutArgument x:TypeArguments="x:String" x:Key="out_UsernameApp1">[usernameApp1]</OutArgument>
           <OutArgument x:TypeArguments="ss:SecureString" x:Key="out_PasswordApp1">[passwordApp1]</OutArgument>
@@ -227,7 +228,7 @@
                 </If>
                 <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke TakeScreenshot workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Utils\TakeScreenshot.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_Folder">C:\Users\tudor rpabox\Desktop\screenshots</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_Folder">[config("ScreenshotsPath").ToString]</InArgument>
                     <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath" />
                     <InArgument x:TypeArguments="x:String" x:Key="in_filenamePrefix">screenshotApp1</InArgument>
                   </ui:InvokeWorkflowFile.Arguments>
@@ -266,10 +267,11 @@
       </TryCatch>
     </While>
     <Sequence sap2010:Annotation.AnnotationText="you might want to perform cleanup, send an email or update a report now that the process has finished successfuly" DisplayName="finish successfuly" sap2010:WorkflowViewState.IdRef="Sequence_11" />
-    <sads:DebugSymbol.Symbol>d1tDOlxVc2Vyc1x0dWRvciBycGFib3hcRGVza3RvcFxyYW5kb20gc3R1ZmZcaGFja2F0aG9uIGF1Z3VzdFxMaWdodExvb3BpbmdGcmFtZXdvcmtcTWFpbi54YW1sVUIDjgIOAgEBTAV7EAIBVXwFiwINAgEDjAIFjAL2AQIBAk0HVR8CAWxWB1ofAgFqWwdgHwIBZGEHehICAVZ9B4oCEgIBBXxqfJwBAgEEUkxSWgIBdFNTU2ECAXJRYFFoAgFwTZgCTbQCAgFvUExQZwIBbk9IT1MCAW1WwAJW3QICAWteUV5fAgFoXUpdWAIBZlu4AVvNAQIBZWIJaRICAV9qCXESAgFbcgl5EgIBV38LpQEWAgE8rQEPtwEaAgE0vwEPhgIaAgEGZztnZgIBYmQ8ZEoCAWBvNG89AgFebDVsRgIBXHczdzQCAVp0NHRHAgFYgAENgAGOAgIBU4EBDYoBGAIBTIsBDZEBGAIBSZIBDaQBGAIBPa4BEa4BrAICATqvARG2ARoCATXAARHAAa8CAgEvwQER4wEWAgEa5AER6gEpAgEW6wERhQIcAgEHgAF6gAGLAgIBVIIBD4kBGAIBTYwBD5ABJwIBSpMBD5MBcgIBSJQBD5sBGAIBQ5wBD6MBGAIBPq4Bf64BqQICATu0ATu0AVICATixATyxAU8CATbAAX/AAawCAgEwwQEfwQE2AgEbwwEVzAEgAgEpzwEV4QEgAgEc6AFW6AFkAgEZ5gFO5gF3AgEY5AHHAeQB4gECARftARXxAS0CART5ARmBAiQCAQiHATqHAWMCAVCEATuEAUwCAU6MAb4BjAHMAQIBS5kBQZkBbAIBRpYBQpYBUAIBRKEBOaEBUAIBQZ4BOp4BTQIBP8QBF8sBIAIBKtABF9ABvgECASfRARfYASACASLZARfgASACAR3tAc0B7QHpAQIBFfoBG/oBzgICAQ/7ARuAAjMCAQnJAUnJAVsCAS3GAUrGAVgCASvQAYUB0AG7AQIBKNYBQdYBWAIBJdMBQtMBVQIBI94BSd4BdAIBINsBStsBWAIBHvoBiAH6AcsCAgEQ/gFl/gFzAgEN/QFe/QFsAgEL+wGiAvsBtwICAQo=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d1tDOlxVc2Vyc1x0dWRvciBycGFib3hcRGVza3RvcFxyYW5kb20gc3R1ZmZcaGFja2F0aG9uIGF1Z3VzdFxMaWdodExvb3BpbmdGcmFtZXdvcmtcTWFpbi54YW1sVkIDjwIOAgEBTAVMcwIBd00FfBACAVZ9BYwCDQIBA40CBY0C9gECAQJOB1YfAgFtVwdbHwIBa1wHYR8CAWViB3sSAgFXfgeLAhICAQV9an2cAQIBBFNMU1oCAXVUU1RhAgFzUmBSaAIBcU6YAk60AgIBcFFMUVoCAW9QSFBhAgFuV8ACV90CAgFsX1FfXwIBaV5KXlgCAWdcuAFczQECAWZjCWoSAgFgawlyEgIBXHMJehICAViAAQumARYCAT2uAQ+4ARoCATXAAQ+HAhoCAQZoO2hmAgFjZTxlSgIBYXA0cD0CAV9tNW1GAgFdeDN4NAIBW3U0dUcCAVmBAQ2BAY4CAgFUggENiwEYAgFNjAENkgEYAgFKkwENpQEYAgE+rwERrwGsAgIBO7ABEbcBGgIBNsEBEcEBrwICATDCARHkARYCARvlARHrASkCARbsARGGAhwCAQeBAXqBAYsCAgFVgwEPigEYAgFOjQEPkQEnAgFLlAEPlAFyAgFJlQEPnAEYAgFEnQEPpAEYAgE/rwF/rwGpAgIBPLUBO7UBUgIBObIBPLIBTwIBN8EBf8EBrAICATHCAR/CATYCARzEARXNASACASrQARXiASACAR3pAVbpAWQCARrnAU7nAXICARjlAccB5QHiAQIBF+4BFfIBLQIBFPoBGYICJAIBCIgBOogBYwIBUYUBO4UBTAIBT40BvgGNAcwBAgFMmgFBmgFsAgFHlwFClwFQAgFFogE5ogFQAgFCnwE6nwFNAgFAxQEXzAEgAgEr0QEX0QG+AQIBKNIBF9kBIAIBI9oBF+EBIAIBHu4BzQHuAekBAgEV+wEb+wHOAgIBD/wBG4ECMwIBCcoBScoBWwIBLscBSscBWAIBLNEBhQHRAbsBAgEp1wFB1wFYAgEm1AFC1AFVAgEk3wFJ3wF0AgEh3AFK3AFYAgEf+wGIAfsBywICARD/AWX/AXMCAQ3+AV7+AWwCAQv8AaIC/AG3AgIBCg==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="Comment_1" sap:VirtualizedContainerService.HintSize="694.4,56" />
       <sap2010:ViewStateData Id="InvokeWorkflowFile_1" sap:VirtualizedContainerService.HintSize="313.6,132">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -408,7 +410,7 @@
       <sap2010:ViewStateData Id="Catch`1_3" sap:VirtualizedContainerService.HintSize="403.2,443.2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -448,7 +450,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="716.8,5696.8">
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="716.8,5792.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -456,7 +458,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Main_1" sap:VirtualizedContainerService.HintSize="756.8,5776.8">
+      <sap2010:ViewStateData Id="Main_1" sap:VirtualizedContainerService.HintSize="756.8,5872.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
